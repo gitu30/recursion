@@ -13,3 +13,56 @@ class Solution {
 
     }
 }
+
+//
+//bit manupalation  using 
+public class numberOfSteps {
+
+	public static void main(String[] args) {
+		System.out.println(numberOfSteps(14));
+
+	}
+	public static int numberOfSteps(int num) {
+		int step =0;
+		//num odd real process 7-1 6==> 6 /2  =3 ==> 2 process
+		//num is even real process is  6/2 => 3   1 process
+		//how num is odd ==> ex 1010 num  10  (num & 1)  ==>(0 ) even  10 & 1 ==> 0
+		//num is even ==> 1011 number  11 (num & 1) ==> (1) odd 
+		while(num >0) {
+			if((num & 1)==1) {
+			step +=2;
+			}else {
+			step +=1;
+			}
+		num=num >> 1;
+		}
+		//when num ==1 
+		//process 1==>0  only step one 
+		//odd step takes += 2; extra step
+		
+		return step-1;
+	}
+
+}
+
+///iterative version
+//public class numberOfSteps {
+//
+//	public static void main(String[] args) {
+//		System.out.println(numberOfSteps(14));
+//
+//	}
+//	public static int numberOfSteps(int num) {
+//		int step =0;
+//		while(num >0) {
+//			if(num % 2==0) {
+//			num=num /2;
+//			}else {
+//				num =num-1;
+//			}
+//			step++;
+//		}
+//		return step;
+//	}
+//
+//}
