@@ -1,0 +1,68 @@
+//https://leetcode.com/problems/house-robber/description/
+//Choice 1: Rob this house
+//You take nums[i]
+//Then you cannot rob next house
+//So move to i + 2
+//👉 Choice 2: Skip this house
+//You take nothing
+//Move to next house i + 1
+
+class Solution {
+    public int rob(int[] nums) {
+        return helper(nums,0);
+    }
+    private int helper(int []nums,int i){
+        if(i >=nums.length){
+            return 0;
+        }
+        int rob=nums[i]+helper(nums,i+2);
+        int skip=helper(nums,i+1);
+        return Math.max(rob,skip);
+    }
+}
+
+//nums[i] + f(i + 2) (rob current)
+//f(i + 1) (skip current)
+//)
+//repeated calculation
+
+
+//same subproblems f(i) are recomputed many times
+//so we store result of  each index and reuse them
+//before computing  f(i)
+// Have I already solved this problem
+//if yes return stored value 
+//if  compute and store it 
+
+
+class Solution {
+ 
+     public int rob(int[] nums) {
+      int [] dp =new int [nums.length];
+      Arrays.fill(dp,-1);
+      return helper(nums,0,dp);
+     }
+     private int helper(int []nums,int i,int []dp){
+        if(i >= nums.length){
+            return 0;
+        }
+        //have i already solved this problem
+        //if yes return stored answer
+        //avoid recomputation
+        if(dp[i] != -1){
+            return dp[i];
+        }
+        //rob the current house
+        int rob=nums[i]+helper(nums,i+2,dp);
+        //you take nums[i],you must skip next house(i+1)
+        //so moved to i+2
+        int skip=helper(nums,i+1,dp);   
+        //take nothing move to next house
+        //to take best choise
+        dp[i]=Math.max(rob,skip);
+        return dp[i];
+//      At each index, we have two choices—rob or skip.
+// We recursively compute both possibilities and cache results using dp[] to avoid recomputation. This reduces time complexity from exponential to linear.”
+
+     }
+}
