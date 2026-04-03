@@ -1,0 +1,31 @@
+class Solution {
+//     public boolean isPowerOfFour(int n) {
+//         if(n <= 0){
+//             return false;
+//         }
+//         while(n % 4 ==0){
+//             n=n / 4;
+//         }
+//         return n == 1;
+//  }
+ public boolean isPowerOfFour(int n){
+    return n > 0 &&
+           (n & (n - 1)) == 0 &&
+           (n & 0x55555555) != 0;
+ }
+ //can we do better without loops
+ //number is power of 4 if it is power of 2 and it is only set bit is 
+ //even position
+
+ // n>0 positive 
+ //(n &(n-1)) == 0 check n power of 2
+ //means only one bit  power of 2
+ // 1000  & 0111 ==>0000 thats mean power of two
+ //(n & 0x55555555) != 0  bit is even position
+ // power of 4 only  when one at even position
+ //power of 2 can be one at even position or odd position 
+ //0x55555555 keeps bit at even position remove bit at odd position
+}
+//https://leetcode.com/problems/power-of-four/
+
+//https://leetcode.com/problems/power-of-four/
